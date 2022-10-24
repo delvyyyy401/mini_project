@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project/page/login_registration.dart';
 
 import '../constants.dart';
 import '../data/profile_data.dart';
@@ -121,7 +122,7 @@ class _ProfileState extends State<Profile> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        title: Text("History"),
+        title: Text("Profile"),
         backgroundColor: kBackgroundColor,
         foregroundColor: kTextColor,
         centerTitle: false,
@@ -182,7 +183,8 @@ class _ProfileState extends State<Profile> {
                 decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.0)), color: Colors.white, boxShadow: [
                   BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 5.0),
                 ]),
-                child: TextButton(onPressed: (){},
+                child: TextButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));},
                     child: Text("Log Out", style: TextStyle(color: kTextColor)),
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(horizontal: 162, vertical: 26)),
