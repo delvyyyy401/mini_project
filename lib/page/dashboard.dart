@@ -2,25 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:mini_project/constants.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-import 'file_data.dart';
+import '../data/file_data.dart';
 
-class ContentScreen extends StatelessWidget{
+class DashboardScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Dashboard(),
-      //bottomSheet: bottomNavigationBar(),
-    );
-  }
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
-class Dashboard extends StatefulWidget {
+
+class _DashboardScreenState extends State<DashboardScreen> {
   @override
-  _DashboardState createState() => _DashboardState();
+  Widget build(BuildContext context) => Scaffold(
+      backgroundColor: Colors.white,
+      body: Dashboard()
+  );
+}
+
+class  Dashboard extends StatefulWidget {
+  @override
+  State<Dashboard> createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
   final ContentCard contentCard = ContentCard();
+  final CategoryList categoryList = CategoryList();
   ScrollController controller = ScrollController();
   bool closeTopContainer = false;
   double topContainer = 0;
@@ -28,7 +32,7 @@ class _DashboardState extends State<Dashboard> {
   List<Widget> itemsData = [];
 
   void getPostsData() {
-    List<dynamic> responseList = FOOD_DATA;
+    List<dynamic> responseList = content_data;
     List<Widget> listItems = [];
     responseList.forEach((post) {
       listItems.add(Container(
@@ -45,6 +49,8 @@ class _DashboardState extends State<Dashboard> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+
+                    // categoryList,
                     Text(
                       post["theme"],
                       style: const TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor, fontSize: 15),
@@ -65,9 +71,11 @@ class _DashboardState extends State<Dashboard> {
                 Image.asset(
                   "assets/images/${post["image"]}",
                   height: double.infinity,
-                )
+                ),
               ],
+
             ),
+
           )));
     });
     setState(() {
@@ -132,13 +140,14 @@ class _DashboardState extends State<Dashboard> {
               ),
               Expanded(
                   child: ListView.builder(
-                      controller: controller,
-                      itemCount: itemsData.length,
-                      physics: BouncingScrollPhysics(),
-                      itemBuilder: (context, index){
-                        return itemsData[index];
-                      },
-                  )),
+                    controller: controller,
+                    itemCount: itemsData.length,
+                    physics: BouncingScrollPhysics(),
+                    itemBuilder: (context, index){
+                      return itemsData[index];
+                    },
+                  )
+              ),
             ],
           ),
         ),
@@ -146,102 +155,6 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 }
-
-// class ContentList extends StatefulWidget {
-//   @override
-//   _ContentList createState() => _ContentList();
-// }
-// class _ContentList extends State<ContentList> {
-//   final ContentCard contentCard = ContentCard();
-//   ScrollController controller = ScrollController();
-//   bool closeTopContainer = false;
-//   double topContainer = 0;
-//   List<Widget> itemsData = [];
-//
-//   void getPostsData() {
-//     List<dynamic> responseList = FOOD_DATA;
-//     List<Widget> listItems = [];
-//     responseList.forEach((post) {
-//       listItems.add(Container(
-//           height: 150,
-//           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-//           decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.0)), color: Colors.white, boxShadow: [
-//             BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 10.0),
-//           ]),
-//           child: Padding(
-//             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-//             child: Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: <Widget>[
-//                 Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: <Widget>[
-//                     Text(
-//                       post["theme"],
-//                       style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-//                     ),
-//                     Text(
-//                       post["desc"],
-//                       style: const TextStyle(fontSize: 17, color: Colors.grey),
-//                     ),
-//                     SizedBox(height: 10),
-//                     Text(
-//                       post["time"],
-//                       style: const TextStyle(fontSize: 17, color: Colors.grey),
-//                     ),
-//                   ],
-//                 ),
-//                 Image.asset(
-//                   "assets/images/${post["image"]}",
-//                   height: double.infinity,
-//                 )
-//               ],
-//             ),
-//           )));
-//     });
-//     setState(() {
-//       itemsData = listItems;
-//     });
-//   }
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     getPostsData();
-//     controller.addListener(() {
-//       setState(() {
-//         closeTopContainer = false;
-//       });
-//     });
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final Size size = MediaQuery.of(context).size;
-//     final double categoryHeight = size.height*0.30;
-//     return SafeArea(child: Scaffold(
-//       backgroundColor: Colors.white,
-//       body: Container(
-//         child: Column(
-//           children: <Widget>[
-//             AnimatedOpacity(
-//               duration: const Duration(milliseconds: 200),
-//               opacity: closeTopContainer?0:6,
-//               child: AnimatedContainer(
-//                   duration: const Duration(milliseconds: 200),
-//                   width: size.width,
-//                   alignment: Alignment.topCenter,
-//                   height: closeTopContainer?0:categoryHeight,
-//                   child: contentCard
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     ));
-//   }
-//
-// }
 
 class ContentCard extends StatelessWidget {
   const ContentCard();
@@ -367,3 +280,84 @@ class ContentCard extends StatelessWidget {
     );
   }
 }
+
+class CategoryList extends StatefulWidget {
+  const CategoryList();
+  @override
+  _CategoryListState createState() => _CategoryListState();
+}
+class _CategoryListState extends State<CategoryList> {
+  // by default first item will be selected
+  int selectedIndex = 0;
+  List categories = ['For you', 'Education', 'Humanity', 'Food', 'Eart'];
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+      height: 30,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: (
+
+              ) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+          child: Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(
+              left: kDefaultPadding,
+              // At end item it add extra 20 right  padding
+              right: index == categories.length - 1 ? kDefaultPadding : 0,
+            ),
+            padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+            decoration: BoxDecoration(
+              color: index == selectedIndex
+                  ? kPrimaryColor
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
+                categories[index],
+                style: index == selectedIndex
+                    ? TextStyle(color: kTextLightColor)
+                    : TextStyle(color: kTextShadow)
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+//
+// class bottomNavigationBar extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       bottomNavigationBar: GNav(
+//         backgroundColor: kBackgroundColor,
+//         color: kTextColor,
+//         activeColor: kPrimaryColor,
+//         gap: 8,
+//         // tabBackgroundColor: kPrimaryColor.withOpacity(0.6),
+//         // padding: EdgeInsets.all(16),
+//         onTabChange: (index){
+//           print(index);
+//         },
+//         tabs: const[
+//           GButton(icon: Icons.travel_explore, text: "Explore"),
+//           GButton(icon: Icons.list_alt_outlined, text: "History"),
+//           GButton(icon: Icons.mail, text: "Inbox"),
+//           GButton(icon: Icons.person, text: "Profile"),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+//
+//
+//

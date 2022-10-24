@@ -1,4 +1,4 @@
-const FOOD_DATA = [
+const content_data = [
   {
     "theme":"Education",
     "desc":"Hawkers",
