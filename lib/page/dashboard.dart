@@ -138,6 +138,7 @@ class _DashboardState extends State<Dashboard> {
                     height: closeTopContainer?0:categoryHeight,
                     child: contentCard),
               ),
+              categoryList,
               Expanded(
                   child: ListView.builder(
                     controller: controller,
