@@ -63,7 +63,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     SizedBox(height: 20),
                     Wrap(
-                      //alignment: WrapAlignment.spaceAround,
+                      //alignment: WrapAlignment.spaceBetween,
                       spacing: 75,
                       children: <Widget>[
                       Column(
@@ -128,6 +128,7 @@ class _ProfileState extends State<Profile> {
         centerTitle: false,
       ),
       body: Container(
+          margin: EdgeInsets.all(10),
           alignment: Alignment.centerLeft,
           height: size.height,
           child: Column(
@@ -149,7 +150,7 @@ class _ProfileState extends State<Profile> {
                 child: TextButton(onPressed: (){},
                     child: Text("My Account", style: TextStyle(color: kTextColor)),
                     style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(horizontal: 162, vertical: 26)),
+                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(horizontal: 150, vertical: 26)),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -159,6 +160,7 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               Container(
+                alignment: Alignment.centerLeft,
                 height: 70,
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.0)), color: Colors.white, boxShadow: [
@@ -167,7 +169,7 @@ class _ProfileState extends State<Profile> {
                 child: TextButton(onPressed: (){},
                     child: Text("My Wallet", style: TextStyle(color: kTextColor)),
                     style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(horizontal: 162, vertical: 26)),
+                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(horizontal: 156, vertical: 26)),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -178,6 +180,7 @@ class _ProfileState extends State<Profile> {
               ),
 
               Container(
+                alignment: Alignment.centerLeft,
                 height: 70,
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.0)), color: Colors.white, boxShadow: [
@@ -187,7 +190,7 @@ class _ProfileState extends State<Profile> {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));},
                     child: Text("Log Out", style: TextStyle(color: kTextColor)),
                     style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(horizontal: 162, vertical: 26)),
+                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(horizontal: 164, vertical: 26)),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),

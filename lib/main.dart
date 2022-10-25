@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project/page/dashboard.dart';
+import 'package:mini_project/page/detail.dart';
 import 'package:mini_project/page/history.dart';
 import 'package:mini_project/page/inbox.dart';
 import 'package:mini_project/page/login_registration.dart';

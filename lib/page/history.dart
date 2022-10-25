@@ -30,24 +30,27 @@ class _HistoryState extends State<History> {
     historyList.forEach((post) {
       listItems.add(Container(
         height: 100,
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.0)), color: Colors.white, boxShadow: [
           BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 10.0),
         ]),
-
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    Image.asset(
-                      "assets/images/${post["image"]}",
-                      height: 70,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        "assets/images/${post["image"]}",
+                        height: 80,
+                      ),
                     ),
                   ],
                 ),
+                SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -58,6 +61,11 @@ class _HistoryState extends State<History> {
                     Text(
                       post["desc"],
                       style: const TextStyle(color: kTextColor),
+                    ),
+                    SizedBox(height: 25),
+                    Text(
+                      "Amount Donated : \$${post["donate"]}",
+                      style: const TextStyle(color: kTextShadow, fontSize: 10),
                     ),
                   ],
                 ),
@@ -94,7 +102,6 @@ class _HistoryState extends State<History> {
         height: size.height,
         child: Column(
           children: <Widget>[
-
             Expanded(
               child: ListView.builder(
                   itemCount: itemsData.length,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../constants.dart';
 import '../data/inbox_data.dart';
 
@@ -29,39 +28,39 @@ class _HistoryState extends State<History> {
     List<Widget> listItems = [];
     historyList.forEach((post) {
       listItems.add(Container(
-          height: 100,
+          height: 80,
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.0)), color: Colors.white, boxShadow: [
             BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 10.0),
           ]),
-
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    Image.asset(
-                      "assets/images/${post["image"]}",
-                      height: 70,
+                    CircleAvatar(radius: 30,
+                      backgroundImage: AssetImage("assets/images/${post["image"]}"),
                     ),
+                    // Image.asset(
+                    //   "assets/images/${post["image"]}",
+                    //   height: 80,
+                    // ),
                   ],
                 ),
+                SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          post["name"],
-                          style: const TextStyle(fontWeight: FontWeight.bold, color: kTextColor, fontSize: 15),
-                        ),
-                        Text(
-                          post["date"],
-                          style: const TextStyle(color: kTextColor, fontSize: 11),
-                        ),
-                      ],
+                    Text(
+                      post["date"], textAlign: TextAlign.right,
+                      style: const TextStyle(color: kTextColor, fontSize: 11),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      post["name"],
+                      style: const TextStyle(fontWeight: FontWeight.bold, color: kTextColor, fontSize: 15),
                     ),
                     Text(
                       post["message"],
