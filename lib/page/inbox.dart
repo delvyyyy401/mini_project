@@ -92,7 +92,7 @@ class _HistoryState extends State<History> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        title: Text("History"),
+        title: Text("Inbox"),
         backgroundColor: kBackgroundColor,
         foregroundColor: kTextColor,
         centerTitle: false,

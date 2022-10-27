@@ -48,10 +48,6 @@ class _ProfileState extends State<Profile> {
                     CircleAvatar(radius: 45,
                       backgroundImage: AssetImage("assets/images/${post["image"]}"),
                     ),
-                    // Image.asset(
-                    //   "assets/images/${post["image"]}",
-                    //   height: 90,
-                    // ),
                     SizedBox(height: 10),
                     Text(
                       post["name"],

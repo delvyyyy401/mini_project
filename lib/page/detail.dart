@@ -44,9 +44,13 @@ class _DetailPageState extends State<DetailPage> {
                       height: 130,
                       width: 370,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child:Image.asset(widget.detailData.imageTop, height: 120),
-                      ),
+                          borderRadius: BorderRadius.circular(20),
+                          child: Material(
+                              child: Ink.image(image: AssetImage(widget.detailData.imageTop),
+                                height: 120,
+                                fit: BoxFit.cover,
+                              )
+                          )),
                     ),
                     SizedBox(height: 10),
                     Text(
@@ -72,7 +76,6 @@ class _DetailPageState extends State<DetailPage> {
                             Image(image: AssetImage("assets/images/Target.png"),
                               width: 40,
                               height: 60,
-
                             ),
                             SizedBox(width: 10),
                             Column(

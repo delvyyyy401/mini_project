@@ -5,6 +5,6 @@ const data = [
     "subscribe":12,
     "followers":12000,
     "following":123,
-    "image":"Item_1.jpg",
+    "image":"Delvy.jpg",
   },
 ];
