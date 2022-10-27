@@ -8,13 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2.5.0
-      - uses: action/setup-java@1
+      - name: Setup JDK
+        uses: actions/setup-java@v3.6.0
           with:
-            java-version: '12.x'
+            java-version: 18.0
       - name: Build with Gradle
         run: ./gradlew build
       - name: Upload GitHub Pages artifact
