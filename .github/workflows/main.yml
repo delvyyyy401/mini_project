@@ -14,7 +14,7 @@ jobs:
     - name: Setup JDK
       uses: actions/setup-java@v3.6.0
       with:
-        java-version: 1.8
+        java-version: 1.8.0_331
     - name: Build with Gradle
       run: ./gradlew build
     - name: Upload UPK 
