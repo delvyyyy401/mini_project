@@ -12,10 +12,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.5.0
-      - name: Setup JDK
-        uses: actions/setup-java@v3.6.0
-        with:
-          java-version: 1.8
+      - uses: action/setup-java@1
+          with:
+            java-version: '12.x'
       - name: Build with Gradle
         run: ./gradlew build
       - name: Upload GitHub Pages artifact
