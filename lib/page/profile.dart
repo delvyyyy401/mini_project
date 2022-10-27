@@ -148,15 +148,11 @@ class _ProfileState extends State<Profile> {
                   BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 5.0),
                 ]),
                 child: TextButton(onPressed: (){},
-                    child: Text("My Account", style: TextStyle(color: kTextColor)),
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(horizontal: 150, vertical: 26)),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                            )
-                        )
-                    )
+                    child: ListTile(
+                      leading: Icon(Icons.person),
+                      title: Text("My Account"),
+                      trailing: Icon(Icons.arrow_forward_ios),
+                    ),
                 ),
               ),
               Container(
@@ -167,15 +163,10 @@ class _ProfileState extends State<Profile> {
                   BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 5.0),
                 ]),
                 child: TextButton(onPressed: (){},
-                    child: Text("My Wallet", style: TextStyle(color: kTextColor)),
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(horizontal: 156, vertical: 26)),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            )
-                        )
-                    )
+                  child: ListTile(leading: Icon(Icons.wallet),
+                    title: Text("My Wallet"),
+                    trailing: Icon(Icons.arrow_forward_ios),
+                  ),
                 ),
               ),
 
@@ -188,15 +179,11 @@ class _ProfileState extends State<Profile> {
                 ]),
                 child: TextButton(onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));},
-                    child: Text("Log Out", style: TextStyle(color: kTextColor)),
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(horizontal: 164, vertical: 26)),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            )
-                        )
-                    )
+                  child: ListTile(
+                    leading: Icon(Icons.logout),
+                    title: Text("Log out"),
+                    trailing: Icon(Icons.arrow_forward_ios),
+                  ),
                 ),
               ),
               Container(
